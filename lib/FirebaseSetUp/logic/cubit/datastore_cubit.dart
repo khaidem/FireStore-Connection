@@ -5,7 +5,5 @@ import 'package:equatable/equatable.dart';
 part 'datastore_state.dart';
 
 class DatastoreCubit extends Cubit<DatastoreState> {
-  DatastoreCubit() : super(DatastoreState(status: StoreStatus.initial));
-  CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('data');
+  DatastoreCubit() : super(const DatastoreState(status: StoreStatus.initial));
 }
