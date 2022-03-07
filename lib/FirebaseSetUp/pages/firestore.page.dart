@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebaseconnectionsetup/FirebaseSetUp/logic/cubit/datastore_cubit.dart';
+import 'package:firebaseconnectionsetup/FirebaseSetUp/pages/login_logout.page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,17 +45,17 @@ class _FireStorePageState extends State<FireStorePage> {
   //   querySnapshot.docs[0].reference.delete();
   // }
 
-  final Stream<QuerySnapshot> user =
-      FirebaseFirestore.instance.collection('data').snapshots();
+  // final Stream<QuerySnapshot> user =
+  //     FirebaseFirestore.instance.collection('data').snapshots();
 
-  Widget _buildList(QuerySnapshot snapshot) {
-    return ListView.builder(
-        itemCount: snapshot.docs.length,
-        itemBuilder: (context, index) {
-          final doc = snapshot.docs[index];
-          return Text('User name is ${doc['name']}');
-        });
-  }
+  // Widget _buildList(QuerySnapshot snapshot) {
+  //   return ListView.builder(
+  //       itemCount: snapshot.docs.length,
+  //       itemBuilder: (context, index) {
+  //         final doc = snapshot.docs[index];
+  //         return Text('User name is ${doc['name']}');
+  //       });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class _FireStorePageState extends State<FireStorePage> {
         title: const Text('FireStore Connection'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -95,17 +96,17 @@ class _FireStorePageState extends State<FireStorePage> {
                   child: const Text('Submit'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Delete'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ScreenFireStore()),
+                    );
+                  },
+                  child: const Text('Screen Show'),
                 ),
               ],
             ),
-            // StreamBuilder<QuerySnapshot>(
-            //     stream: user,
-            //     builder: (context, snapshot) {
-            //       if (!snapshot.hasData) return const LinearProgressIndicator();
-            //       return Expanded(child: _buildList(snapshot.data!));
-            //     }),
           ],
         ),
       ),
